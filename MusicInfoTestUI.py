@@ -1,14 +1,34 @@
 import tkinter as tk
+import json
+import http.client
 
 def showSongResults():
-    """Get the necessary song info using the API and show it on the Results label."""
-    #use the API
-    lbl_result["text"] = "yes"
+    """Get the necessary song info using the Deezer API and show it on the Results label.
+    Use the Search endpoint and get the first song that appears in the search results."""
+    #use the Deezer API's Search endpoint w/ the track connection
+    conn = http.client.HTTPSConnection("deezerdevs-deezer.p.rapidapi.com")
+    headers = {
+    'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
+    'x-rapidapi-key': "39a9bbd0f9msh1a6baf4688fe92dp1358c1jsn0c083022c4a5"
+    }
+    conn.request("GET", ('/search?q=track:"' + (ent_song.get()).replace(" ","%20") + '"'), headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    lbl_result["text"] = data.decode("utf-8")
 
 def showArtistResults():
-    """Get the necessary artist info using the API and show it on the Results label."""
-    #use the API
-    lbl_result["text"] = "no"
+    """Get the necessary artist info using the Deezer API and show it on the Results label.
+    Use the Search endpoint and get the artist of the first song that appears in the search results."""
+    #use the Deezer API's Search endpoint w/ the artist connection
+    conn = http.client.HTTPSConnection("deezerdevs-deezer.p.rapidapi.com")
+    headers = {
+    'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
+    'x-rapidapi-key': "39a9bbd0f9msh1a6baf4688fe92dp1358c1jsn0c083022c4a5"
+    }
+    conn.request("GET", ('/search?q=artist:"' + (ent_artist.get()).replace(" ","%20") + '"'), headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    lbl_result["text"] = data.decode("utf-8")
 
 window = tk.Tk()
 window.title("Music Info")
