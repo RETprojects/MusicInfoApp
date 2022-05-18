@@ -14,7 +14,9 @@ def showSongResults():
     conn.request("GET", ('/search?q=track:"' + (ent_song.get()).replace(" ","%20") + '"'), headers=headers)
     res = conn.getresponse()
     data = res.read()
-    lbl_result["text"] = data.decode("utf-8")
+    data = json.loads(data.decode("utf-8"))
+    #TEST: print the duration (in seconds) of the first song that appears in the search results
+    lbl_result["text"] = data['data'][0]['duration']
 
 def showArtistResults():
     """Get the necessary artist info using the Deezer API and show it on the Results label.
@@ -28,7 +30,9 @@ def showArtistResults():
     conn.request("GET", ('/search?q=artist:"' + (ent_artist.get()).replace(" ","%20") + '"'), headers=headers)
     res = conn.getresponse()
     data = res.read()
-    lbl_result["text"] = data.decode("utf-8")
+    data = json.loads(data.decode("utf-8"))
+    #TEST: print the duration (in seconds) of the first song that appears in the search results
+    lbl_result["text"] = data['data'][0]['duration']
 
 window = tk.Tk()
 window.title("Music Info")
