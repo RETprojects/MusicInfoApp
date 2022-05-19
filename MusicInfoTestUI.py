@@ -57,29 +57,24 @@ def showArtistResults():
     data = res.read()
     data = json.loads(data.decode("utf-8"))
     
-    #get the first song's title
-    title = data['data'][0]['title']
+    #get the artist's Deezer ID from the first song that appears in the search results
+    artist_id = data['data'][0]['artist']['id']
+    #get the artist's top track on Deezer
+    top_song = data['data'][0]['title']
+
+    #use the ID to get an artist object
+    conn.request("GET", ('/artist/"' + str(artist_id), headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    data = json.loads(data.decode("utf-8"))
+
     #get the artist's name
-    artist = data['data'][0]['artist']['name']
-    #get the album name
-    album = data['data'][0]['album']['title']
-    #get the release date
-    #release_date =
-    #get the studio's name
-    #studio =
-    #get the song's genre
-    #genre =
-    #get the song's duration
-    duration = data['data'][0]['duration']
-    #get the record label
-    #label =
-    #get the songwriter(s)
-    #songwriter =
-    #get the producer(s)
-    #producer =
+    name = data['name']
+    #get the number of albums that the artist has released
+    num_albums = data['nb_album']
 
     #print the resulting information
-    lbl_result["text"] = "\"" + title + "\"\n" + artist + "\n" + album + "\n" + str(duration) + " seconds long"
+    lbl_result["text"] = name + "\n" + str(num_albums) + " releases made\nTop track on Deezer: " + top_song
 
 window = tk.Tk()
 window.title("Music Info")
