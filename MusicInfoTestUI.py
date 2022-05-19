@@ -22,25 +22,26 @@ def showSongResults():
     artist = data['data'][0]['artist']['name']
     #get the album name
     album = data['data'][0]['album']['title']
-    #get the release date
-    #release_date =
-    #get the recording date
-    #recording_date =
-    #get the studio's name
-    #studio =
-    #get the song's genre
-    #genre =
     #get the song's duration
     duration = data['data'][0]['duration']
+
+    #get the information for the album that includes the song
+    album_id = data['data'][0]['album']['id']
+    #use the Album endpoint
+    conn.request("GET", ('/album/"' + str(album_id) + '"'), headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    data = json.loads(data.decode("utf-8"))
+
+    #get the release date
+    release_date = data['release_date']
+    #get the song's genre
+    genre = data['genres']['data'][0]
     #get the record label
-    #label =
-    #get the songwriter(s)
-    #songwriter =
-    #get the producer(s)
-    #producer =
+    label = data['label']
 
     #print the resulting information
-    lbl_result["text"] = "\"" + title + "\"\n" + artist + "\n" + album + "\n" + str(duration) + " seconds long"
+    lbl_result["text"] = "\"" + title + "\"\n" + artist + "\n" + album + "\nReleased " + release_date + "\n" + genre + "\n" + str(duration) + " seconds long\n" + label
 
 def showArtistResults():
     """Get the necessary artist info using the Deezer API and show it on the Results label.
@@ -64,8 +65,6 @@ def showArtistResults():
     album = data['data'][0]['album']['title']
     #get the release date
     #release_date =
-    #get the recording date
-    #recording_date =
     #get the studio's name
     #studio =
     #get the song's genre
