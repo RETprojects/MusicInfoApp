@@ -15,8 +15,32 @@ def showSongResults():
     res = conn.getresponse()
     data = res.read()
     data = json.loads(data.decode("utf-8"))
-    #TEST: print the duration (in seconds) of the first song that appears in the search results
-    lbl_result["text"] = data['data'][0]['duration']
+    
+    #get the first song's title
+    title = data['data'][0]['title']
+    #get the artist's name
+    artist = data['data'][0]['artist']['name']
+    #get the album name
+    album = data['data'][0]['album']['title']
+    #get the release date
+    #release_date =
+    #get the recording date
+    #recording_date =
+    #get the studio's name
+    #studio =
+    #get the song's genre
+    #genre =
+    #get the song's duration
+    duration = data['data'][0]['duration']
+    #get the record label
+    #label =
+    #get the songwriter(s)
+    #songwriter =
+    #get the producer(s)
+    #producer =
+
+    #print the resulting information
+    lbl_result["text"] = "\"" + title + "\"\n" + artist + "\n" + album + "\n" + str(duration) + " seconds long"
 
 def showArtistResults():
     """Get the necessary artist info using the Deezer API and show it on the Results label.
