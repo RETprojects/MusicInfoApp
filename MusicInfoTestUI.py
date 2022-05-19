@@ -63,7 +63,7 @@ def showArtistResults():
     top_song = data['data'][0]['title']
 
     #use the ID to get an artist object
-    conn.request("GET", ('/artist/"' + str(artist_id), headers=headers)
+    conn.request("GET", ('/artist/"' + str(artist_id)), headers=headers)
     res = conn.getresponse()
     data = res.read()
     data = json.loads(data.decode("utf-8"))
