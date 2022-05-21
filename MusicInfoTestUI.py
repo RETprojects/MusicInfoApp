@@ -79,7 +79,7 @@ def showArtistResults():
     #print the resulting information
     results_text.configure(state='normal')
     results_text.delete("1.0","end")
-    results_text.insert('end',str(name) + "\n" + str(num_albums) + " releases available on Deezer\nTop track on Deezer: \"" + str(top_song) + "\"")
+    results_text.insert('end',f"{name}\n{num_albums} releases available on Deezer\nTop track on Deezer: \"{top_song}\"")
     results_text.configure(state='disabled')
 
 window = tk.Tk()
