@@ -28,7 +28,7 @@ def showSongResults():
     #get the information for the album that includes the song
     album_id = data['data'][0]['album']['id']
     #use the Album endpoint
-    conn.request("GET", ('/album/"' + str(album_id) + '"'), headers=headers)
+    conn.request("GET", ('/album/' + str(album_id) + ''), headers=headers)
     res = conn.getresponse()
     data = res.read()
     data = json.loads(data.decode("utf-8"))
@@ -41,7 +41,7 @@ def showSongResults():
     label = data['label']
 
     #print the resulting information
-    lbl_result["text"] = "\"" + title + "\"\n" + artist + "\n" + album + "\nReleased " + release_date + "\n" + genre + "\n" + str(duration) + " seconds long\n" + label
+    lbl_result["text"] = "\"" + title + "\"\n" + artist + "\n" + album + "\nReleased " + release_date + "\n" + genre + "\n" + duration + " seconds long\n" + label
 
 def showArtistResults():
     """Get the necessary artist info using the Deezer API and show it on the Results label.
