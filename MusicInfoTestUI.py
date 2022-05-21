@@ -43,7 +43,7 @@ def showSongResults():
     #print the resulting information
     results_text.configure(state='normal')
     results_text.delete("1.0","end")
-    results_text.insert('end',"\"" + str(title) + "\"\n" + str(artist) + "\n" + str(album) + "\nReleased " + str(release_date) + "\n" + str(genre) + "\n" + str(duration) + " seconds long\n" + str(label))
+    results_text.insert('end',f"\"{title}\"\n{artist}\n{album}\nReleased {release_date}\n{genre}\n{duration} seconds long\n{label}")
     results_text.configure(state='disabled')
 
 def showArtistResults():
