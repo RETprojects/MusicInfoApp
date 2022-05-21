@@ -41,7 +41,6 @@ def showSongResults():
     label = data['label']
 
     #print the resulting information
-    #lbl_result["text"] = "\"" + str(title) + "\"\n" + str(artist) + "\n" + str(album) + "\nReleased " + str(release_date) + "\n" + str(genre) + "\n" + str(duration) + " seconds long\n" + str(label)
     results_text.configure(state='normal')
     results_text.delete("1.0","end")
     results_text.insert('end',"\"" + str(title) + "\"\n" + str(artist) + "\n" + str(album) + "\nReleased " + str(release_date) + "\n" + str(genre) + "\n" + str(duration) + " seconds long\n" + str(label))
@@ -78,7 +77,6 @@ def showArtistResults():
     num_albums = data['nb_album']
 
     #print the resulting information
-    #lbl_result["text"] = str(name) + "\n" + str(num_albums) + " releases available on Deezer\nTop track on Deezer: \"" + str(top_song) + "\""
     results_text.configure(state='normal')
     results_text.delete("1.0","end")
     results_text.insert('end',str(name) + "\n" + str(num_albums) + " releases available on Deezer\nTop track on Deezer: \"" + str(top_song) + "\"")
