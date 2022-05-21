@@ -41,7 +41,11 @@ def showSongResults():
     label = data['label']
 
     #print the resulting information
-    lbl_result["text"] = "\"" + str(title) + "\"\n" + str(artist) + "\n" + str(album) + "\nReleased " + str(release_date) + "\n" + str(genre) + "\n" + str(duration) + " seconds long\n" + str(label)
+    #lbl_result["text"] = "\"" + str(title) + "\"\n" + str(artist) + "\n" + str(album) + "\nReleased " + str(release_date) + "\n" + str(genre) + "\n" + str(duration) + " seconds long\n" + str(label)
+    results_text.configure(state='normal')
+    results_text.delete("1.0","end")
+    results_text.insert('end',"\"" + str(title) + "\"\n" + str(artist) + "\n" + str(album) + "\nReleased " + str(release_date) + "\n" + str(genre) + "\n" + str(duration) + " seconds long\n" + str(label))
+    results_text.configure(state='disabled')
 
 def showArtistResults():
     """Get the necessary artist info using the Deezer API and show it on the Results label.
@@ -74,7 +78,11 @@ def showArtistResults():
     num_albums = data['nb_album']
 
     #print the resulting information
-    lbl_result["text"] = str(name) + "\n" + str(num_albums) + " releases made\nTop track on Deezer: " + str(top_song)
+    #lbl_result["text"] = str(name) + "\n" + str(num_albums) + " releases available on Deezer\nTop track on Deezer: \"" + str(top_song) + "\""
+    results_text.configure(state='normal')
+    results_text.delete("1.0","end")
+    results_text.insert('end',str(name) + "\n" + str(num_albums) + " releases available on Deezer\nTop track on Deezer: \"" + str(top_song) + "\"")
+    results_text.configure(state='disabled')
 
 window = tk.Tk()
 window.title("Music Info")
@@ -97,7 +105,7 @@ frm_entry.grid(row=0, column=0, padx=10)
 btn_song.grid(row=0, column=2, pady=10)
 
 ent_artist = tk.Entry(master=frm_entry, width=10)
-lbl_artist = tk.Label(master=frm_entry, text="Artist")
+lbl_artist = tk.Label(master=frm_entry, text="Artist Name")
 
 ent_artist.grid(row=1, column=0, sticky="w", pady=10)
 lbl_artist.grid(row=1, column=1, sticky="w", pady=10)
@@ -110,8 +118,13 @@ btn_artist = tk.Button(
 
 btn_artist.grid(row=1, column=2, pady=10)
 
-lbl_result = tk.Label(master=window, text="Results")
+lbl_result = tk.Label(master=window, text="Results", anchor='w')
 
 lbl_result.grid(row=2, column=0, padx=10, sticky="w")
+
+#Here is the text area where the results will be displayed.
+results_text = tk.Text(master=window, height=8, width=52, state='disabled')
+
+results_text.grid(row=3, column=0, padx=10, sticky="w")
 
 window.mainloop()
