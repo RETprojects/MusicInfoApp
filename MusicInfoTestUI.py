@@ -36,12 +36,12 @@ def showSongResults():
     #get the release date
     release_date = data['release_date']
     #get the song's genre
-    genre = data['genres']['data'][0]
+    genre = data['genres']['data'][0]['name']
     #get the record label
     label = data['label']
 
     #print the resulting information
-    lbl_result["text"] = "\"" + title + "\"\n" + artist + "\n" + album + "\nReleased " + release_date + "\n" + genre + "\n" + duration + " seconds long\n" + label
+    lbl_result["text"] = "\"" + str(title) + "\"\n" + str(artist) + "\n" + str(album) + "\nReleased " + str(release_date) + "\n" + str(genre) + "\n" + str(duration) + " seconds long\n" + str(label)
 
 def showArtistResults():
     """Get the necessary artist info using the Deezer API and show it on the Results label.
@@ -74,7 +74,7 @@ def showArtistResults():
     num_albums = data['nb_album']
 
     #print the resulting information
-    lbl_result["text"] = name + "\n" + str(num_albums) + " releases made\nTop track on Deezer: " + top_song
+    lbl_result["text"] = str(name) + "\n" + str(num_albums) + " releases made\nTop track on Deezer: " + str(top_song)
 
 window = tk.Tk()
 window.title("Music Info")
