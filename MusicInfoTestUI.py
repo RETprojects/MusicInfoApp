@@ -16,7 +16,7 @@ def showSongResults():
     'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
     'x-rapidapi-key': "39a9bbd0f9msh1a6baf4688fe92dp1358c1jsn0c083022c4a5"
     }
-    conn.request("GET", ('/search?q=track:"' + (ent_song.get()).replace(" ","%20") + '"'), headers=headers)
+    conn.request("GET", ('/search?q=track:"' + box_contents.replace(" ","%20") + '"'), headers=headers)
     res = conn.getresponse()
     data = res.read()
     data = json.loads(data.decode("utf-8"))
@@ -54,13 +54,18 @@ def showSongResults():
 def showArtistResults():
     """Get the necessary artist info using the Deezer API and show it on the Results label.
     Use the Search endpoint and get the artist of the first song that appears in the search results."""
+    box_contents = ent_artist.get()
+    #if the Artist Name entry box is empty, don't do anything
+    if not any(char.isalpha() for char in box_contents):
+        return
+
     #use the Deezer API's Search endpoint w/ the artist connection
     conn = http.client.HTTPSConnection("deezerdevs-deezer.p.rapidapi.com")
     headers = {
     'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
     'x-rapidapi-key': "39a9bbd0f9msh1a6baf4688fe92dp1358c1jsn0c083022c4a5"
     }
-    conn.request("GET", ('/search?q=artist:"' + (ent_artist.get()).replace(" ","%20") + '"'), headers=headers)
+    conn.request("GET", ('/search?q=artist:"' + box_contents.replace(" ","%20") + '"'), headers=headers)
     res = conn.getresponse()
     data = res.read()
     data = json.loads(data.decode("utf-8"))
