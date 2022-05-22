@@ -5,6 +5,11 @@ import http.client
 def showSongResults():
     """Get the necessary song info using the Deezer API and show it on the Results label.
     Use the Search endpoint and get the first song that appears in the search results."""
+    box_contents = ent_song.get()
+    #if the Song Title entry box is empty, don't do anything
+    if not any(char.isalpha() for char in box_contents):
+        return
+
     #use the Deezer API's Search endpoint w/ the track connection
     conn = http.client.HTTPSConnection("deezerdevs-deezer.p.rapidapi.com")
     headers = {
