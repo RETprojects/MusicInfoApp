@@ -1,3 +1,10 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv('API_KEY')
+
 import tkinter as tk
 import json
 import http.client
@@ -14,7 +21,7 @@ def showSongResults():
     conn = http.client.HTTPSConnection("deezerdevs-deezer.p.rapidapi.com")
     headers = {
     'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
-    'x-rapidapi-key': "39a9bbd0f9msh1a6baf4688fe92dp1358c1jsn0c083022c4a5"
+    'x-rapidapi-key': str(API_KEY)
     }
     conn.request("GET", ('/search?q=track:"' + box_contents.replace(" ","%20") + '"'), headers=headers)
     res = conn.getresponse()
