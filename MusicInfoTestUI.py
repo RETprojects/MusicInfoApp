@@ -6,6 +6,7 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 
 import tkinter as tk
+from tkinter import *
 import json
 import http.client
 
@@ -118,10 +119,13 @@ def showArtistResults():
 window = tk.Tk()
 window.title("Music Info")
 window.resizable(width=False, height=False)
+window['background'] = '#05112b'
 
 frm_entry = tk.Frame(master=window)
+frm_entry.config(bg="#05112b")
 ent_song = tk.Entry(master=frm_entry, width=10)
 lbl_song = tk.Label(master=frm_entry, text="Song Title")
+lbl_song.config(bg="#05112b",fg="white")
 
 ent_song.grid(row=0, column=0, sticky="w")
 lbl_song.grid(row=0, column=1, sticky="w")
@@ -137,6 +141,7 @@ btn_song.grid(row=0, column=2, pady=10)
 
 ent_artist = tk.Entry(master=frm_entry, width=10)
 lbl_artist = tk.Label(master=frm_entry, text="Artist Name")
+lbl_artist.config(bg="#05112b",fg="white")
 
 ent_artist.grid(row=1, column=0, sticky="w", pady=10)
 lbl_artist.grid(row=1, column=1, sticky="w", pady=10)
@@ -150,6 +155,7 @@ btn_artist = tk.Button(
 btn_artist.grid(row=1, column=2, pady=10)
 
 lbl_result = tk.Label(master=window, text="Results", anchor='w')
+lbl_result.config(bg="#05112b",fg="white")
 
 lbl_result.grid(row=2, column=0, padx=10, sticky="w")
 
