@@ -84,6 +84,14 @@ def showArtistResults():
     res = conn.getresponse()
     data = res.read()
     data = json.loads(data.decode("utf-8"))
+
+    #if there are no items in "data", then ask the user to check their spelling
+    if len(data['data']) < 1:
+        results_text.configure(state='normal')
+        results_text.delete("1.0","end")
+        results_text.insert('end',"Sorry, we couldn't find any matching results. Try checking your spelling.")
+        results_text.configure(state='disabled')
+        return
     
     #get the artist's Deezer ID from the first song that appears in the search results
     artist_id = data['data'][0]['artist']['id']
