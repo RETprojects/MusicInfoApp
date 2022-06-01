@@ -122,10 +122,11 @@ window.title("Music Info")
 window.resizable(width=True, height=True)
 window['background'] = '#05112b'
 
+title_font = font.Font(family="System",size=40)
 custom_font = font.Font(family="System",size=11)
 
 lbl_title = tk.Label(master=window, text="Music Info")
-lbl_title.config(bg="#05112b",fg="white",font=custom_font)
+lbl_title.config(bg="#05112b",fg="#808080",font=title_font)
 lbl_title.grid(row=0, column=0)
 
 frm_entry = tk.Frame(master=window)
