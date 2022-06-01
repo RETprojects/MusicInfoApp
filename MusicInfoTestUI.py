@@ -124,14 +124,18 @@ window['background'] = '#05112b'
 
 custom_font = font.Font(family="System",size=11)
 
+lbl_title = tk.Label(master=window, text="Music Info")
+lbl_title.config(bg="#05112b",fg="white",font=custom_font)
+lbl_title.grid(row=0, column=0)
+
 frm_entry = tk.Frame(master=window)
 frm_entry.config(bg="#05112b")
 ent_song = tk.Entry(master=frm_entry, width=50)
 lbl_song = tk.Label(master=frm_entry, text="Song Title")
 lbl_song.config(bg="#05112b",fg="white",font=custom_font)
 
-ent_song.grid(row=0, column=0, sticky="w")
-lbl_song.grid(row=0, column=1, sticky="w")
+ent_song.grid(row=1, column=0, sticky="w")
+lbl_song.grid(row=1, column=1, sticky="w")
 
 btn_song = tk.Button(
     master=frm_entry,
@@ -139,15 +143,15 @@ btn_song = tk.Button(
     command=showSongResults
 )
 
-frm_entry.grid(row=0, column=0, padx=10)
-btn_song.grid(row=0, column=2, pady=10)
+frm_entry.grid(row=1, column=0, padx=10)
+btn_song.grid(row=1, column=2, pady=10)
 
 ent_artist = tk.Entry(master=frm_entry, width=50)
 lbl_artist = tk.Label(master=frm_entry, text="Artist Name")
 lbl_artist.config(bg="#05112b",fg="white",font=custom_font)
 
-ent_artist.grid(row=1, column=0, sticky="w", pady=10)
-lbl_artist.grid(row=1, column=1, sticky="w", pady=10)
+ent_artist.grid(row=2, column=0, sticky="w", pady=10)
+lbl_artist.grid(row=2, column=1, sticky="w", pady=10)
 
 btn_artist = tk.Button(
     master=frm_entry,
@@ -155,16 +159,16 @@ btn_artist = tk.Button(
     command=showArtistResults
 )
 
-btn_artist.grid(row=1, column=2, pady=10)
+btn_artist.grid(row=2, column=2, pady=10)
 
 lbl_result = tk.Label(master=window, text="Results", anchor='w')
 lbl_result.config(bg="#05112b",fg="white",font=custom_font)
 
-lbl_result.grid(row=2, column=0, padx=10, sticky="w")
+lbl_result.grid(row=3, column=0, padx=10, sticky="w")
 
 #Here is the text area where the results will be displayed.
 results_text = tk.Text(master=window, height=10, width=80, state='disabled')
 
-results_text.grid(row=3, column=0, padx=10, sticky="w")
+results_text.grid(row=4, column=0, padx=10, sticky="w")
 
 window.mainloop()
