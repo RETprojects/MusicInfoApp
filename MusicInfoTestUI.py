@@ -170,6 +170,6 @@ lbl_result.grid(row=3, column=0, padx=10, sticky="w")
 #Here is the text area where the results will be displayed.
 results_text = tk.Text(master=window, height=10, width=80, state='disabled')
 
-results_text.grid(row=4, column=0, padx=10, sticky="w")
+results_text.grid(row=4, column=0, padx=10, pady=10, sticky="w")
 
 window.mainloop()
